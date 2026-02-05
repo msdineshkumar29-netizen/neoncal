@@ -1,0 +1,77 @@
+:root{
+  --bg:#000;
+  --glass-bg:rgba(255,255,255,0.04);
+  --glass-border:rgba(255,255,255,0.08);
+  --accent-1:#00fff0; /* cyan */
+  --accent-2:#ff4dff; /* magenta */
+  --accent-3:#7fff00; /* lime */
+  --glass-blur:10px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,segui ui,system-ui,Roboto,Arial,sans-serif;
+  background:radial-gradient(ellipse at 20% 10%, rgba(0,255,240,0.03), transparent 10%), radial-gradient(ellipse at 90% 80%, rgba(255,77,255,0.03), transparent 10%), var(--bg);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px;
+}
+
+.calculator{
+  width: min(760px, 96%);
+  border-radius:16px;
+  padding:20px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 40px rgba(0,255,240,0.03);
+}
+
+.calc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.calc-header h1{font-size:1.1rem;margin:0;font-weight:600;letter-spacing:0.5px}
+.controls{display:flex;gap:8px}
+
+.display{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.015));
+  border-radius:12px;
+  padding:14px;
+  margin-bottom:18px;
+  border:1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  box-shadow: 0 6px 20px rgba(0,0,0,0.7);
+}
+.expression{color:rgba(255,255,255,0.6);font-size:0.9rem;min-height:20px}
+.result{font-size:2rem;font-weight:700;margin-top:6px;color:var(--accent-1);text-shadow:0 0 8px rgba(0,255,240,0.35)}
+
+.keypad{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.glass-btn{appearance:none;border:1px solid var(--glass-border);background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));padding:14px;border-radius:10px;color:#fff;font-weight:600;cursor:pointer;backdrop-filter:blur(var(--glass-blur));transition:transform .12s ease, box-shadow .12s ease;box-shadow:0 6px 16px rgba(0,0,0,0.6)}
+.glass-btn.small{padding:8px 10px;font-size:0.85rem}
+.glass-btn.wide{grid-column:span 2}
+.glass-btn.num{color:#e9f7ff}
+.glass-btn.op{color:var(--accent-2)}
+.glass-btn.sci{color:var(--accent-3)}
+.glass-btn.func{color:var(--accent-1)}
+
+.glass-btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,0.7),0 0 16px rgba(255,77,255,0.06)}
+.glass-btn:active{transform:translateY(0)}
+
+/* neon outlines */
+.glass-btn.op:hover{box-shadow:0 8px 30px rgba(255,77,255,0.12), 0 0 28px rgba(255,77,255,0.08)}
+.glass-btn.func:hover{box-shadow:0 8px 30px rgba(0,255,240,0.12),0 0 28px rgba(0,255,240,0.08)}
+.glass-btn.sci:hover{box-shadow:0 8px 30px rgba(127,255,0,0.12),0 0 28px rgba(127,255,0,0.08)}
+
+.footer{margin-top:14px;color:rgba(255,255,255,0.45);font-size:0.85rem;text-align:center}
+
+/* responsive */
+@media (max-width:520px){
+  .result{font-size:1.6rem}
+  .glass-btn{padding:12px}
+  .keypad{gap:8px}
+}
+
+/* subtle animated neon */
+@keyframes pulseNeon{0%{box-shadow:0 0 4px rgba(0,255,240,0.06);}50%{box-shadow:0 0 20px rgba(0,255,240,0.10);}100%{box-shadow:0 0 4px rgba(0,255,240,0.06);}}
+.calculator{animation: pulseNeon 6s ease-in-out infinite}
